@@ -1,0 +1,37 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto p-4 border">
+            <app-toast [message]="toast.message"></app-toast>
+            <div class="text-center my-2 py-3 bg-info rounded text-white"><h4>SignUp</h4></div>
+
+    <div class="mt-4">
+        <form [formGroup]="myReactiveForm" (ngSubmit)="submitSignUpForm()">
+            <div class="form-group">
+                <label for="name">Name*</label>
+                <input type="text" formControlName="name" id="name" class="form-control">
+                <small *ngIf="!myReactiveForm.get('name').valid && myReactiveForm.get('name').touched" class="text-danger">Please Enter Your Name!</small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="text" formControlName="email" id="email" class="form-control">
+                <small *ngIf="!myReactiveForm.get('email').valid && myReactiveForm.get('email').touched" class="text-danger">Please Enter Your Valid Email!</small>
+            </div>
+            <div class="form-group">
+                <label for="username">Username*</label>
+                <input type="text" formControlName="username" id="username" class="form-control">
+                <small *ngIf="!myReactiveForm.get('username').valid && myReactiveForm.get('username').touched" class="text-danger">Please Choose Your Unique Username!</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="password" formControlName="password" id="password" class="form-control">
+                <small *ngIf="!myReactiveForm.get('password').valid && myReactiveForm.get('password').touched" class="text-danger">Please Enter Your Password!</small>
+            </div>
+            <button class="btn btn-success" type="submit" [disabled]="!myReactiveForm.valid">SignUp</button>
+            <a class="btn btn-info text-white ml-3" (click)="resetForm()">Reset</a>
+        </form>
+    </div>
+        </div>
+    </div>
+
+</div>

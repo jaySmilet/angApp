@@ -1,0 +1,57 @@
+<div class="text-primary text-center my-5">
+    <h4>{{title}}</h4>
+</div>
+<app-toast [message]="toast.message"></app-toast>
+<table class="table table-hover table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Color</th>
+            <th>Product Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="products.length === 0">
+        <tr>
+            <td colspan="4">There are no products in the DB. Add a new product above.</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="!isUpdating">
+        <tr *ngFor="let p of products">
+            <td>{{p.product_name}}</td>
+            <td>{{p.product_price}}</td>
+            <td>{{p.product_color}}</td>
+            <td>{{p.product_quantity}}</td>
+            <td><button class="btn btn-sm btn-primary" (click)="enableUpdating(p)">
+                    <i class="fa fa-pencil"></i>Edit
+                </button>
+                <button class="btn btn-sm btn-danger ml-1 mt-1 mt-md-0" (click)="deleteProduct(p)">
+                    <i class="fa fa-trash"></i>Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="isUpdating">
+        <tr>
+            <td colspan="4">
+                <form class="form-inline" #form="ngForm" (ngSubmit)="updateProduct(product)">
+                    <input class="form-control mr-2" type="text" name="product_name" [(ngModel)]="product.product_name"
+                        placeholder="Product Name" required>
+                    <input class="form-control mr-2" type="number" name="product_price"
+                        [(ngModel)]="product.product_price" placeholder="product Price" min="0" required>
+                    <input class="form-control mr-2" type="text" name="product_color"
+                        [(ngModel)]="product.product_color" placeholder="Product Color" required>
+                    <input class="form-control mr-2" type="number" name="product_quantity"
+                        [(ngModel)]="product.product_quantity" placeholder="product Quantity" min="0" required>
+                    <button class="btn btn-sm btn-primary ml-auto" type="submit" [disabled]="!form.form.valid">
+                        <i class="fa fa-floppy-o"></i> Save
+                    </button>
+                    <button class="btn btn-sm btn-warning ml-auto" (click)="cancelUpdating()">
+                        <i class="fa fa-times"></i> Cancel
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

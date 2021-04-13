@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="/angApp/dashboard">angApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/angApp/product" routerLinkActivate="active" *ngIf="angAppAuthService.signedIn()">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/angApp/product-add" routerLinkActivate="active" *ngIf="angAppAuthService.signedIn()">Add Product</a>
+        </li>   
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!angAppAuthService.signedIn()" routerLink="/angApp/signin" routerLinkActivate="active">SignIn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!angAppAuthService.signedIn()" routerLink="/angApp/signup" routerLinkActivate="active">SignUp</a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link" (click)="angAppAuthService.SignOutUser()" *ngIf="angAppAuthService.signedIn()" style="cursor: pointer;">Signout</a>
+        </li>   
+      </ul>
+    </div>  
+  </nav>
+
+  <div class="container pt-5">
+      <router-outlet></router-outlet>
+  </div>

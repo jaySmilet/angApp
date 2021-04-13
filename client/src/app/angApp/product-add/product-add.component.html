@@ -1,0 +1,37 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto p-4 border">
+            <app-toast [message]="toast.message"></app-toast>
+            <div class="text-center my-2 py-3 bg-info rounded text-white"><h4>Add Product</h4></div>
+
+    <div class="mt-4">
+        <form [formGroup]="myReactiveForm" (ngSubmit)="submitAddProductForm()">
+            <div class="form-group">
+                <label for="product_name">Product Name*</label>
+                <input type="text" formControlName="product_name" id="product_name" class="form-control">
+                <small *ngIf="!myReactiveForm.get('product_name').valid && myReactiveForm.get('product_name').touched" class="text-danger">Product Name Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="product_price">Product Price*</label>
+                <input type="number" formControlName="product_price" id="product_price" class="form-control">
+                <small *ngIf="!myReactiveForm.get('product_price').valid && myReactiveForm.get('product_price').touched" class="text-danger">Product Price Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="product_color">Product Color*</label>
+                <input type="text" formControlName="product_color" id="product_color" class="form-control">
+                <small *ngIf="!myReactiveForm.get('product_color').valid && myReactiveForm.get('product_color').touched" class="text-danger">Product Color Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="product_quantity">Product Quantity*</label>
+                <input type="number" formControlName="product_quantity" id="product_quantity" class="form-control">
+                <small *ngIf="!myReactiveForm.get('product_quantity').valid && myReactiveForm.get('product_quantity').touched" class="text-danger">Product Quantity Required!</small>
+            </div>
+            <button class="btn btn-success" type="submit" [disabled]="!myReactiveForm.valid">Add</button>
+            <button class="btn btn-info ml-3" (click)="resetForm()">Reset</button>
+        </form>
+    </div>
+        </div>
+    </div>
+
+</div>
